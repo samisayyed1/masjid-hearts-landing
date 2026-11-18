@@ -114,6 +114,44 @@ const ld = { '@context': 'https://schema.org', '@type': 'NGO', name: 'Masjid Hea
       }), { rootMargin: '-45% 0px -50% 0px' });
       document.querySelectorAll('main > section[id]').forEach((s) => spy.observe(s));
 
+      // Light up [data-lit] statements word by word as they move up the screen.
+      const litEls = [...document.querySelectorAll<HTMLElement>('[data-lit]')];
+      if (litEls.length && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const groups = litEls.map((el) => {
+          const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+          const nodes: Text[] = [];
+          while (walker.nextNode()) nodes.push(walker.currentNode as Text);
+          const words: HTMLElement[] = [];
+          nodes.forEach((t) => {
+            const frag = document.createDocumentFragment();
+            t.textContent!.split(/(\s+)/).forEach((part) => {
+              if (!part) return;
+              if (/^\s+$/.test(part)) { frag.append(part); return; }
+              const w = document.createElement('span'); w.className = 'w'; w.textContent = part; words.push(w); frag.append(w);
+            });
+            t.replaceWith(frag);
+          });
+          el.classList.add('lit-on');
+          return { el, words, last: -1 };
+        });
+        let queued = false;
+        const light = () => {
+          queued = false;
+          const vh = innerHeight;
+          groups.forEach((g) => {
+            const top = g.el.getBoundingClientRect().top;
+            const p = Math.min(1, Math.max(0, (vh * 0.9 - top) / (vh * 0.5)));
+            const lit = Math.round(p * (g.words.length + 3) * 10) / 10;
+            if (lit === g.last) return;
+            g.last = lit;
+            g.words.forEach((w, i) => w.style.setProperty('--o', String(0.2 + 0.8 * Math.min(1, Math.max(0, lit - i)))));
+          });
+        };
+        light();
+        addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(light); } }, { passive: true });
+        addEventListener('resize', light);
+      }
+
       // Count up numbers marked data-count when they come into view.
       const counter = new IntersectionObserver((entries) => entries.forEach((e) => {
         if (!e.isIntersecting) return;

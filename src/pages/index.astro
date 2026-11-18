@@ -94,8 +94,8 @@ const tiers = c.tiers.items;
         </div>
       </div>
       <div data-reveal><SunMap /></div>
-      <div class="tagline" data-reveal>
-        <p class="display">{c.sun.tagline} <em>{c.sun.taglineEm}</em></p>
+      <div class="tagline">
+        <p class="display" data-lit>{c.sun.tagline} <em>{c.sun.taglineEm}</em></p>
         <div class="cta-row">
           <a class="btn btn-gold" href="#tiers">{c.hero.cta} <Arrow /></a>
           <a class="btn btn-ghost" href="#impact">{c.hero.cta2}</a>
@@ -122,7 +122,7 @@ const tiers = c.tiers.items;
     </div>
 
     <div class="wrap">
-      <p class="roles display" data-reveal>
+      <p class="roles display" data-lit>
         {c.light.statement}{' '}
         {c.light.roles.map((r, i) => <><em style={`--d:${i}`}>{r}</em>{i < c.light.roles.length - 1 ? ', ' : ''}</>)}
       </p>
@@ -138,8 +138,8 @@ const tiers = c.tiers.items;
           </li>
         ))}
       </ul>
-      <div class="respect" data-reveal>
-        <p class="display">{c.light.respect} <em>{c.light.respectEm}</em></p>
+      <div class="respect">
+        <p class="display" data-lit>{c.light.respect} <em>{c.light.respectEm}</em></p>
         <p class="lede">{c.light.p3}</p>
       </div>
     </div>
@@ -201,7 +201,7 @@ const tiers = c.tiers.items;
           </li>
         ))}
       </ol>
-      <p class="model-close display" data-reveal>{c.model.close}</p>
+      <p class="model-close display" data-lit>{c.model.close}</p>
     </div>
   </section>
 
@@ -239,7 +239,7 @@ const tiers = c.tiers.items;
           <p class="eyebrow"><Heart /> {c.initiatives.eyebrow}</p>
           <h2 class="display h2">{c.initiatives.h2} <em>{c.initiatives.h2em}</em></h2>
           <p class="lede">{c.initiatives.lede}</p>
-          <a class="btn btn-green" href="#tiers">{c.hero.cta} <Arrow /></a>
+          <a class="btn btn-gold" href="#tiers">{c.hero.cta} <Arrow /></a>
         </div>
       </div>
       <ol class="inits" role="list">
@@ -279,7 +279,7 @@ const tiers = c.tiers.items;
             <p class="t-tag">{t.tagline}</p>
             <p class="t-text">{t.text}</p>
             <div class="t-impact"><p class="k">{c.tiers.impact}</p><p>{t.impact}</p></div>
-            <a class:list={['btn', i === tiers.length - 1 ? 'btn-gold' : 'btn-green']} href={giveHref(t.amount, t.link)}>{c.tiers.button.replace('{amount}', String(t.amount))}</a>
+            <a class="btn btn-gold" href={giveHref(t.amount, t.link)}>{c.tiers.button.replace('{amount}', String(t.amount))}</a>
           </li>
         ))}
       </ul>
@@ -294,7 +294,7 @@ const tiers = c.tiers.items;
           <input type="number" inputmode="numeric" min="1" step="1" value="20" name="give" required />
           <span class="mo" aria-hidden="true">{c.tiers.perMonth}</span>
         </label>
-        <button class="btn btn-green" type="submit">{c.tiers.custom.button} <Arrow /></button>
+        <button class="btn btn-gold" type="submit">{c.tiers.custom.button} <Arrow /></button>
       </form>
     </div>
   </section>
@@ -357,7 +357,7 @@ const tiers = c.tiers.items;
     <div class="narrow final-inner">
       <div class="final-dome" data-reveal aria-hidden="true"><Dome /></div>
       <p class="eyebrow" data-reveal><Heart /> {c.final.eyebrow}</p>
-      <h2 class="display h2" data-reveal>{c.final.h2} <em>{c.final.h2em}</em></h2>
+      <h2 class="display h2" data-lit>{c.final.h2} <em>{c.final.h2em}</em></h2>
       <div class="prose" data-reveal>
         <p>{c.final.p1}</p>
         <p>{c.final.p2}</p>
@@ -469,10 +469,6 @@ const tiers = c.tiers.items;
   .light-copy p { font-size: clamp(1.1rem, 1.6vw, 1.28rem); }
   .roles { margin-top: clamp(72px, 10vw, 128px); font-size: clamp(2rem, 4.6vw, 3.9rem); line-height: 1.14; color: var(--green); max-width: 24ch; }
   .roles em { display: inline; }
-  @media (prefers-reduced-motion: no-preference) {
-    .js .roles em { opacity: 0.12; transition: opacity 0.6s var(--ease); transition-delay: calc(0.5s + var(--d) * 0.35s); }
-    .js .roles.in em { opacity: 1; }
-  }
   .wants-wrap { margin-top: clamp(56px, 8vw, 96px); }
   .wants { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }
   .wants li { padding: 28px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--line); }
@@ -648,8 +644,8 @@ const tiers = c.tiers.items;
   .final-cta { margin-top: 40px; }
   .btn-xl { min-height: 64px; padding: 0 38px; font-size: 1.12rem; }
   .mini-tiers { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 24px; }
-  .mini-tiers a { display: inline-flex; gap: 6px; padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(0, 72, 61, 0.2); text-decoration: none; color: var(--ink-soft); font-size: 0.92rem; font-weight: 600; transition: border-color 0.25s, color 0.25s, background-color 0.25s; }
-  .mini-tiers a:hover { border-color: var(--green); color: var(--green); background: var(--white); }
+  .mini-tiers a { display: inline-flex; gap: 6px; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--gold); background: var(--gold-pale); text-decoration: none; color: var(--gold-ink); font-size: 0.92rem; font-weight: 600; transition: border-color 0.25s, color 0.25s, background-color 0.25s; }
+  .mini-tiers a:hover { background: var(--gold); color: var(--green-night); }
   .mini-tiers strong { color: var(--green); }
   @media (max-width: 560px) { .btn-xl { width: 100%; } .mini-tiers { display: grid; grid-template-columns: 1fr 1fr; } .mini-tiers li { display: flex; } .mini-tiers a { flex: 1; justify-content: center; } }
 </style>

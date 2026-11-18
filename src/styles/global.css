@@ -98,6 +98,30 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .btn-gold { background: var(--gold); color: var(--green-night); box-shadow: 0 12px 30px -14px rgba(207, 176, 131, 0.9); }
 .btn-gold:hover { background: var(--gold-soft); box-shadow: 0 16px 36px -14px rgba(207, 176, 131, 1); }
 .btn-green { background: var(--green); color: var(--white); }
+
+/* Every call to action keeps a calm double beat: a soft press and a gold ring.
+   It pauses while the pointer or keyboard is on the button, and stops for reduced motion. */
+.btn-gold::after, .btn-ghost::after { content: ''; position: absolute; inset: -1.5px; border-radius: inherit; pointer-events: none; z-index: -1; }
+@media (prefers-reduced-motion: no-preference) {
+  .btn-gold { animation: mh-beat 2.8s ease-in-out infinite; }
+  .btn-gold::after { animation: mh-ring 2.8s ease-out infinite; }
+  .btn-ghost::after { animation: mh-ring 2.8s ease-out infinite 1.4s; }
+  .btn-gold:hover, .btn-gold:focus-visible, .btn-gold:hover::after, .btn-gold:focus-visible::after,
+  .btn-ghost:hover::after, .btn-ghost:focus-visible::after { animation-play-state: paused; }
+}
+@keyframes mh-beat {
+  0%, 34%, 100% { transform: scale(1); }
+  7% { transform: scale(1.04); }
+  14% { transform: scale(1); }
+  21% { transform: scale(1.022); }
+}
+@keyframes mh-ring {
+  0% { box-shadow: 0 0 0 0 rgba(207, 176, 131, 0.55); }
+  55%, 100% { box-shadow: 0 0 0 14px rgba(207, 176, 131, 0); }
+}
+
+/* Statements that light up word by word as they scroll into view (set up in Base.astro). */
+.lit-on .w { opacity: var(--o, 0.2); transition: opacity 0.35s linear; }
 .btn-green:hover { background: var(--green-deep); box-shadow: 0 14px 30px -14px rgba(0, 72, 61, 0.7); }
 .btn-ghost { border-color: rgba(255, 255, 255, 0.36); color: var(--white); }
 .btn-ghost:hover { border-color: var(--gold); color: var(--gold-soft); }
