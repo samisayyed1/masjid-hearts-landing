@@ -1,23 +1,23 @@
 ---
-// The Masjid Hearts mark, drawn one heart at a time: a dome that only exists because hearts gather.
+// The Masjid Hearts mark: the dome of hearts with its crescent finial.
+// `animate` assembles it once, row by row, when the page loads.
 import dome from '../data/dome.json';
-const n = dome.hearts.length;
+interface Props { animate?: boolean; class?: string }
+const { animate = false, class: cls } = Astro.props;
 ---
-<svg class="dome" viewBox="4400 4150 12200 12700" aria-hidden="true">
+<svg class:list={['dome', cls, { 'dome-anim': animate }]} viewBox="4400 4150 12200 12700" aria-hidden="true">
   <g fill="#CFB083">
-    {dome.hearts.map((d, i) => <path class="heart" style={`--i:${i}`} d={d} />)}
-    <path class="finial" style={`--i:${n}`} d={dome.finial} />
+    {dome.hearts.map((d, i) => <path class="mh-heart" style={`--i:${i}`} d={d} />)}
+    <path class="mh-finial" d={dome.finial} />
   </g>
 </svg>
 
 <style>
-  .dome { width: 100%; height: auto; overflow: visible; }
-  .heart, .finial { transform-box: fill-box; transform-origin: center; }
+  .dome { display: block; width: 100%; height: auto; }
   @media (prefers-reduced-motion: no-preference) {
-    .heart { opacity: 0; animation: gather 0.7s cubic-bezier(0.22, 0.8, 0.26, 1) forwards, glow 1.1s ease-in-out 1; animation-delay: calc(0.1s + var(--i) * 40ms), calc(2.1s + var(--i) * 40ms); }
-    .finial { opacity: 0; transform-origin: 50% 100%; animation: rise 0.9s cubic-bezier(0.22, 0.8, 0.26, 1) forwards; animation-delay: calc(0.15s + var(--i) * 40ms); }
+    .dome-anim .mh-heart { opacity: 0; animation: mh-dome-heart 0.9s cubic-bezier(0.22, 0.8, 0.26, 1) forwards; animation-delay: calc(0.2s + var(--i) * 28ms); }
+    .dome-anim .mh-finial { opacity: 0; animation: mh-dome-finial 1s ease forwards 1.2s; }
   }
-  @keyframes gather { from { opacity: 0; transform: translateY(22%) scale(0.5); } to { opacity: 1; transform: none; } }
-  @keyframes rise { from { opacity: 0; transform: translateY(12%) scaleY(0.7); } to { opacity: 1; transform: none; } }
-  @keyframes glow { 0%, 100% { fill: #cfb083; } 50% { fill: #f6ead2; } }
+  @keyframes mh-dome-heart { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes mh-dome-finial { from { opacity: 0; } to { opacity: 1; } }
 </style>

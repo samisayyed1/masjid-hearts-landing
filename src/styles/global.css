@@ -67,11 +67,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .mist { background: var(--mist); }
 .sand { background: var(--sand); }
 
-/* Geometric pattern used on dark sections */
-.pattern {
-  position: absolute; inset: 0; pointer-events: none; opacity: 0.075;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23CFB083' stroke-width='1'%3E%3Crect x='21' y='21' width='58' height='58'/%3E%3Crect x='21' y='21' width='58' height='58' transform='rotate(45 50 50)'/%3E%3Cpath d='M0 50h9M91 50h9M50 0v9M50 91v9'/%3E%3C/g%3E%3C/svg%3E");
-}
 
 /* ---------- Type ---------- */
 .display { font-family: var(--display); font-weight: 650; line-height: 1.04; letter-spacing: -0.018em; text-wrap: balance; }
@@ -94,7 +89,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .btn {
   position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   min-height: 54px; padding: 0 28px; border-radius: 999px; border: 1.5px solid transparent;
-  font-weight: 700; font-size: 1rem; text-decoration: none; cursor: pointer; white-space: nowrap; isolation: isolate; overflow: hidden;
+  font-weight: 700; font-size: 1rem; text-decoration: none; cursor: pointer; white-space: nowrap; isolation: isolate; 
   transition: transform 0.25s var(--ease), background-color 0.25s, color 0.25s, border-color 0.25s, box-shadow 0.3s;
 }
 .btn svg { width: 18px; height: 18px; transition: transform 0.25s var(--ease); }
@@ -102,10 +97,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .btn:active { transform: scale(0.98); }
 .btn-gold { background: var(--gold); color: var(--green-night); box-shadow: 0 12px 30px -14px rgba(207, 176, 131, 0.9); }
 .btn-gold:hover { background: var(--gold-soft); box-shadow: 0 16px 36px -14px rgba(207, 176, 131, 1); }
-/* a slow sheen across the main call to action */
-.btn-gold::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.55) 50%, transparent 65%); transform: translateX(-120%); }
-@media (prefers-reduced-motion: no-preference) { .btn-gold::after { animation: sheen 5.5s var(--ease) 2s infinite; } }
-@keyframes sheen { 0%, 70% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
 .btn-green { background: var(--green); color: var(--white); }
 .btn-green:hover { background: var(--green-deep); box-shadow: 0 14px 30px -14px rgba(0, 72, 61, 0.7); }
 .btn-ghost { border-color: rgba(255, 255, 255, 0.36); color: var(--white); }
@@ -158,7 +149,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .site-footer a:hover { color: var(--gold-soft); }
 .foot { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px; }
 .foot .brand svg { height: 58px; color: var(--white); }
-.foot p { margin-top: 18px; max-width: 34ch; font-family: var(--display); font-style: italic; font-size: 1.15rem; color: var(--gold-soft); }
+.foot p { margin-top: 18px; max-width: 46ch; text-wrap: balance; font-family: var(--display); font-style: italic; font-size: 1.15rem; color: var(--gold-soft); }
 .foot ul { display: flex; flex-wrap: wrap; gap: 12px 28px; font-weight: 600; }
 .foot-base { margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--line-light); font-size: 0.88rem; color: rgba(255, 255, 255, 0.55); }
 

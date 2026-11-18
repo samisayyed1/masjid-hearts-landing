@@ -12,19 +12,20 @@ function layout(vertical: boolean) {
   const W = vertical ? 400 : 1000, H = vertical ? 700 : 440;
   const c = vertical ? { x: 200, y: 350 } : { x: 500, y: 220 };
   const R = vertical ? 62 : 74;
-  const n = vertical ? 14 : 20, m = vertical ? 9 : 13;
+  const n = vertical ? 9 : 12, m = vertical ? 9 : 12;
   seed = 7;
+  // Donors on one side mirror the masajid on the other, so the picture is balanced.
   const gs = Array.from({ length: n }, (_, i) => {
-    const t = (i + 0.5) / n;
+    const t = n === 1 ? 0.5 : i / (n - 1);
     return vertical
-      ? { x: 22 + t * 356 + (rnd() - 0.5) * 14, y: 40 + rnd() * 90, s: 0.75 + rnd() * 0.6 }
-      : { x: 40 + rnd() * 150, y: 30 + t * 380 + (rnd() - 0.5) * 12, s: 0.75 + rnd() * 0.6 };
+      ? { x: 30 + t * 340, y: 52 + (i % 2) * 52, s: i % 2 ? 1.15 : 1.35 }
+      : { x: 1000 - (790 + (i % 3) * 66 + (Math.floor(i / 3) % 2) * 22), y: 62 + Math.floor(i / 3) * 88 + (i % 3 === 1 ? 28 : 0), s: i % 2 ? 1.15 : 1.35 };
   });
   const ms = Array.from({ length: m }, (_, i) => {
     const t = m === 1 ? 0.5 : i / (m - 1);
     return vertical
-      ? { x: 30 + t * 340, y: 560 + (i % 2) * 58 + (rnd() - 0.5) * 10, s: i % 2 ? 40 : 46 }
-      : { x: 812 + (i % 3) * 64 + (Math.floor(i / 3) % 2) * 26, y: 46 + Math.floor(i / 3) * 78 + (i % 3 === 1 ? 26 : 0), s: i % 2 ? 48 : 56 };
+      ? { x: 30 + t * 340, y: 572 + (i % 2) * 52, s: i % 2 ? 40 : 46 }
+      : { x: 790 + (i % 3) * 66 + (Math.floor(i / 3) % 2) * 22, y: 62 + Math.floor(i / 3) * 88 + (i % 3 === 1 ? 28 : 0), s: i % 2 ? 48 : 56 };
   });
   const inPaths = gs.map((g) => vertical
     ? `M${g.x.toFixed(1)} ${(g.y + 10).toFixed(1)}C${g.x.toFixed(1)} ${(g.y + 120).toFixed(1)} ${c.x} ${c.y - R - 110} ${c.x} ${c.y - R + 4}`
@@ -48,8 +49,8 @@ const views = [layout(false), layout(true)];
         {v.outPaths.map((d) => <path d={d} pathLength="1" class="out" />)}
       </g>
       <g class="particles">
-        {v.inPaths.map((d, i) => <circle r="3.2" class="pt"><animateMotion dur="2.6s" begin={`${(i * 0.37) % 2.6}s`} repeatCount="indefinite" path={d} keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.5 0 0.4 1" /></circle>)}
-        {v.outPaths.map((d, i) => <circle r="3.6" class="pt pt-out"><animateMotion dur="2.4s" begin={`${1.3 + ((i * 0.29) % 2.4)}s`} repeatCount="indefinite" path={d} keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.5 0 0.4 1" /></circle>)}
+        {v.inPaths.map((d, i) => <circle r="3.2" class="pt" opacity="0"><animateMotion dur="4.2s" begin={`${(i * 0.61) % 4.2}s`} repeatCount="3" fill="freeze" path={d} keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.5 0 0.4 1" /><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.8;1" dur="4.2s" begin={`${(i * 0.61) % 4.2}s`} repeatCount="3" fill="freeze" /></circle>)}
+        {v.outPaths.map((d, i) => <circle r="3.6" class="pt pt-out" opacity="0"><animateMotion dur="4s" begin={`${2.1 + ((i * 0.47) % 4)}s`} repeatCount="3" fill="freeze" path={d} keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.5 0 0.4 1" /><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.8;1" dur="4s" begin={`${2.1 + ((i * 0.47) % 4)}s`} repeatCount="3" fill="freeze" /></circle>)}
       </g>
       <g class="givers">
         {v.gs.map((g, i) => <path class="g" style={`--i:${i}`} d={heart} transform={`translate(${(g.x - 12 * g.s).toFixed(1)} ${(g.y - 12 * g.s).toFixed(1)}) scale(${g.s.toFixed(2)})`} />)}
@@ -67,14 +68,28 @@ const views = [layout(false), layout(true)];
         </>
       ) : (
         <>
-          <text x="115" y="436" class="lbl" text-anchor="middle">{givers}</text>
+          <text x="134" y="436" class="lbl" text-anchor="middle">{givers}</text>
           <text x={v.c.x} y={v.c.y + v.R + 34} class="lbl lbl-fund" text-anchor="middle">{fund}</text>
-          <text x="850" y="436" class="lbl" text-anchor="middle">{masajid}</text>
+          <text x="866" y="436" class="lbl" text-anchor="middle">{masajid}</text>
         </>
       )}
     </svg>
   ))}
 </div>
+
+<script>
+  // The flow plays three times, starting when the diagram comes into view (not on page load).
+  document.querySelectorAll<SVGSVGElement>('svg.uni').forEach((svg) => {
+    svg.pauseAnimations();
+    if (!('IntersectionObserver' in window)) return svg.unpauseAnimations();
+    const io = new IntersectionObserver((e) => {
+      if (!e[0].isIntersecting) return;
+      io.disconnect();
+      setTimeout(() => { svg.setCurrentTime(0); svg.unpauseAnimations(); }, 1400);
+    }, { threshold: 0.4 });
+    io.observe(svg);
+  });
+</script>
 
 <style>
   .unity { position: relative; }
@@ -83,11 +98,11 @@ const views = [layout(false), layout(true)];
   @media (max-width: 700px) { .uni-h { display: none; } .uni-v { display: block; } }
   .threads path { fill: none; stroke: #cfb083; stroke-width: 1.1; opacity: 0.32; }
   .threads path.out { stroke-width: 1.4; opacity: 0.45; }
-  .pt { fill: #e7d6b8; filter: drop-shadow(0 0 4px rgba(231, 214, 184, 0.9)); }
+  .pt { fill: #e7d6b8; }
   .pt-out { fill: #fff3dc; }
-  .g { fill: #cfb083; opacity: 0.85; }
+  .g { fill: #cfb083; }
   .fund { fill: #00332b; stroke: #cfb083; stroke-width: 1.6; }
-  .fund-ring { fill: none; stroke: rgba(207, 176, 131, 0.35); stroke-width: 1; stroke-dasharray: 3 5; }
+  .fund-ring { fill: none; stroke: rgba(207, 176, 131, 0.28); stroke-width: 1; }
   .fund-heart { fill: #cfb083; transform-box: fill-box; transform-origin: center; }
   .lbl { fill: rgba(255, 255, 255, 0.72); font-family: var(--sans); font-size: 15px; font-weight: 650; letter-spacing: 0.14em; text-transform: uppercase; }
   .uni-v .lbl { font-size: 13px; }
@@ -95,16 +110,10 @@ const views = [layout(false), layout(true)];
   .m { transform-box: fill-box; transform-origin: 50% 100%; }
   @media (prefers-reduced-motion: reduce) { .particles { display: none; } }
   @media (prefers-reduced-motion: no-preference) {
-    .fund-heart { animation: beat 2.6s ease-in-out infinite; }
-    .aura { animation: aura 2.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-    .fund-ring { animation: spin 40s linear infinite; transform-box: fill-box; transform-origin: center; }
     :global(.js [data-reveal]) .threads path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.4s cubic-bezier(0.5, 0, 0.2, 1) 0.2s; }
     :global(.js [data-reveal]) .threads path.out { transition-delay: 1s; }
     :global(.js [data-reveal].in) .threads path { stroke-dashoffset: 0; }
     :global(.js [data-reveal]) .m { opacity: 0; transform: translateY(8px) scale(0.7); transition: opacity 0.6s, transform 0.6s cubic-bezier(0.22, 0.8, 0.26, 1); transition-delay: calc(1.5s + var(--i) * 70ms); }
     :global(.js [data-reveal].in) .m { opacity: 1; transform: none; }
   }
-  @keyframes beat { 0%, 100% { transform: scale(1); } 12% { transform: scale(1.1); } 24% { transform: scale(1); } 36% { transform: scale(1.06); } 48% { transform: scale(1); } }
-  @keyframes aura { 0%, 100% { opacity: 0.7; } 20% { opacity: 1; } }
-  @keyframes spin { to { transform: rotate(360deg); } }
 </style>

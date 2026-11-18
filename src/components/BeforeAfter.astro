@@ -41,6 +41,7 @@ const { before, after, beforeAlt, afterAlt, label, beforeText, afterText, slider
 <style>
   .ba { position: relative; aspect-ratio: 16 / 10; border-radius: var(--radius); overflow: hidden; isolation: isolate; background: var(--green-deep); box-shadow: 0 40px 80px -40px rgba(0, 35, 30, 0.6); touch-action: pan-y; }
   .ba-layer { position: absolute; inset: 0; }
+  .ba :global(.ph-label), .ba :global(.ph-dome) { display: none; }
   .ba-after { clip-path: inset(0 0 0 var(--pos)); }
   .tag { position: absolute; top: 16px; padding: 6px 12px; border-radius: 999px; background: rgba(0, 0, 0, 0.45); backdrop-filter: blur(6px); color: var(--white); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; pointer-events: none; }
   .tag-b { left: 16px; }
