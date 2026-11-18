@@ -1,0 +1,189 @@
+{
+  "meta": {
+    "title": "One Modest Gift. Dozens of Mosques. Endless Sadaqah. · Masjid Hearts",
+    "description": "Join a global movement to empower, beautify and expand masajid worldwide through collective monthly micro-sadaqah. From $10 a month."
+  },
+  "nav": {
+    "story": "Our story",
+    "model": "The model",
+    "initiatives": "Initiatives",
+    "tiers": "Giving tiers",
+    "impact": "Impact",
+    "give": "Give monthly"
+  },
+  "hero": {
+    "eyebrow": "Monthly Sadaqah Jariyah",
+    "lines": ["One Modest Gift.", "Dozens of Mosques."],
+    "em": "Endless Sadaqah.",
+    "sub": "Join a global movement to empower, beautify, and expand masajid worldwide through the unstoppable force of collective micro-sadaqah.",
+    "cta": "Become a founding donor",
+    "cta2": "Witness the joy: see our impact",
+    "facts": [
+      { "value": "{count}", "label": "masajid in the network, and growing" },
+      { "value": "$10", "label": "a month is all it takes to begin" },
+      { "value": "24/7", "label": "a congregation somewhere is praying" }
+    ]
+  },
+  "story": {
+    "eyebrow": "The hadith that started it",
+    "arabic": "رَجُلٌ قَلْبُهُ مُعَلَّقٌ بِالْمَسَاجِدِ",
+    "quote": "“…A person whose heart is attached to the mosques.”",
+    "source": "Prophet Muhammad (ﷺ)",
+    "ref": "Sahih al-Bukhari",
+    "p1": "Across the globe, vibrant Muslim communities are growing, worshipping, and learning together. Their devotion is boundless, and their mosques are the epicenters of this beautiful communal life. But as these congregations grow, so does their vision. They dream of evening classes under bright lights, expansive halls to welcome more worshippers, and dignified, beautiful spaces for purification.",
+    "inspired": "This Hadeeth inspired our movement!",
+    "p2": "The solution: MasjidHearts is the bridge between their vision and reality. By pooling one modest, recurring monthly gift of Sadaqah with thousands of others, you become an active partner in elevating dozens of mosques worldwide ({count} currently!). We aren’t just maintaining buildings; we are empowering communities to thrive, radiate light, and do their absolute best.",
+    "countLabel": "mosques currently in the MasjidHearts network"
+  },
+  "sun": {
+    "eyebrow": "Somewhere, right now",
+    "h2": "The sun never sets on your",
+    "h2em": "sadaqah.",
+    "p1": "Consider the breathtaking spiritual return on this investment for your own soul. Imagine the exponential reward of funding not just one or two masajid, but dozens across the globe.",
+    "p2": "Because the sun is always rising and setting somewhere, there is never a moment when a congregation isn’t praying in a sanctuary you helped empower. Imagine the sheer weight on your scale of good deeds as thousands of simultaneous sujuds (prostrations), echoing across different time zones around the clock, are continuously credited to your name while you sleep, work, and live.",
+    "liveLabel": "Live",
+    "liveTitle": "The most recent adhan for each prayer, around the world",
+    "ago": "began {m} min ago",
+    "justNow": "beginning now",
+    "local": "local time",
+    "note": "Calculated live from the sun’s position (Muslim World League angles). Local timetables may differ by a few minutes.",
+    "mapLabel": "World map showing where it is day, twilight and night right now, with the masajid in the network marked.",
+    "legendDay": "Daylight",
+    "legendTwilight": "Fajr and Isha twilight",
+    "legendNight": "Night",
+    "legendMasjid": "A masjid in the network",
+    "tagline": "One Ummah. One shared fund.",
+    "taglineEm": "Endless Sadaqah Jariyah."
+  },
+  "light": {
+    "eyebrow": "Centers of Light",
+    "h2": "The true potential of our",
+    "h2em": "sacred spaces",
+    "arabic": "فِي بُيُوتٍ أَذِنَ اللَّهُ أَن تُرْفَعَ وَيُذْكَرَ فِيهَا اسْمُهُ يُسَبِّحُ لَهُ فِيهَا بِالْغُدُوِّ وَالْآصَالِ",
+    "quote": "“In houses [mosques] which Allah has ordered to be raised and that His name be mentioned therein; exalting Him within them in the morning and the evenings…”",
+    "ref": "Quran, Surah An-Nur 24:36",
+    "p1": "When we look at local mosques across the world—from the bustling neighborhoods of Southeast Asia to the serene mountain villages of Africa—we see absolute brilliance. We see communities deeply in love with their faith. We see children eager to memorize the Quran, and elders who spend their afternoons in quiet contemplation.",
+    "statement": "The local masjid is not just a place to pray; it is",
+    "roles": ["a school", "a community center", "a sanctuary", "and a home."],
+    "p2": "But many of these communities are bursting at the seams. They have the spirit, the dedication, and the love, but they need partners to help them reach their full potential.",
+    "wants": [
+      { "icon": "roof", "text": "They want to build a larger roof so the Friday congregation doesn't have to pray in the hot sun." },
+      { "icon": "solar", "text": "They want to install modern solar panels so their youth can study the Deen after dark." },
+      { "icon": "wudu", "text": "They want to lay beautiful marble for their wudu stations to honor the dignity of the worshippers." }
+    ],
+    "respect": "At MasjidHearts, we don't look at these mosques with pity; we look at them with",
+    "respectEm": "profound respect.",
+    "p3": "Our mission is to give them the tools, the infrastructure, and the resources to transform their beautiful visions into reality.",
+    "networkEyebrow": "The network",
+    "networkH3": "Masajid you’ll be empowering",
+    "prev": "Previous masajid",
+    "next": "Next masajid"
+  },
+  "model": {
+    "eyebrow": "The MasjidHearts Model",
+    "h2": "The power of",
+    "h2em": "unity",
+    "oldLabel": "Historically",
+    "old": "Funding a mosque expansion meant waiting until an individual or a single community could raise a massive lump sum for one specific location.",
+    "newLabel": "With MasjidHearts",
+    "new": "MasjidHearts introduces a more dynamic, unified, and empowering way to build our legacy. We utilize collective micro-giving.",
+    "p1": "By subscribing to a monthly giving tier, your funds are pooled into a massive global trust—a single beating heart for the Ummah. Instead of funding one brick in one wall, your $10 a month acts as the catalyst for rapid, wide-scale empowerment.",
+    "diagram": "Many small monthly gifts flow into one shared fund, which flows out to dozens of masajid.",
+    "givers": "Monthly donors",
+    "fund": "One global fund",
+    "masajid": "{count} masajid",
+    "monthLabel": "In a single month, the MasjidHearts collective might:",
+    "month": [
+      { "icon": "solar", "place": "Senegal", "text": "Install a state-of-the-art solar grid for a vibrant community in Senegal, illuminating their evening classes." },
+      { "icon": "hall", "place": "New Zealand", "text": "Construct a beautiful, expanded prayer hall for a growing congregation in rural New Zealand." },
+      { "icon": "wudu", "place": "Indonesia", "text": "Build a pristine, commercial-grade wudu facility for a bustling city center mosque in Indonesia." }
+    ],
+    "close": "You aren't just uplifting one mosque. You are elevating an entire global network, sharing in the joy and the reward of every single one."
+  },
+  "jariyah": {
+    "eyebrow": "The Ultimate Investment",
+    "h2": "Sadaqah Jariyah",
+    "arabic": "مَنْ بَنَى مَسْجِدًا لِلَّهِ بَنَى اللَّهُ لَهُ فِي الْجَنَّةِ مِثْلَهُ",
+    "quote": "“Whoever builds a mosque for Allah, Allah will build for him a house like it in Paradise.”",
+    "ref": "Sahih Muslim",
+    "p1": "There is no investment in the Akhirah (Hereafter) quite like empowering the houses of Allah. It is the ultimate Sadaqah Jariyah (continuous, flowing charity). It is an investment that outlasts your lifetime, generating a continuous stream of light for you long after you have left this world. And it’s not one, nor two, but over 50+ and growing insha’Allah!",
+    "rewardsLabel": "Imagine the spiritual dividends of this partnership:",
+    "rewards": [
+      { "icon": "book", "title": "The Reward of Knowledge", "text": "Every time a child learns to read Al-Fatihah under a solar-powered light you helped install, you share in the reward of every letter recited." },
+      { "icon": "drop", "title": "The Reward of Purity", "text": "Every time a believer uses a beautiful wudu station you helped fund, your scale of good deeds grows with every drop of water." },
+      { "icon": "prayer", "title": "The Reward of Prayer", "text": "Every time a congregation prostrates Sujoud in comfort on plush carpets or under an expanded roof you helped build, you are credited for their peace and tranquility." }
+    ],
+    "photoAlt": "Light falling across the carpet inside a masjid prayer hall"
+  },
+  "initiatives": {
+    "eyebrow": "Tangible Empowerment",
+    "h2": "Where your monthly gift",
+    "h2em": "goes",
+    "lede": "We partner directly with local communities to manage end-to-end infrastructure upgrades that make a lasting difference. Your pooled contributions are deployed into visionary initiatives:",
+    "items": [
+      { "icon": "radiance", "name": "The Radiance Initiative", "focus": "Light & Energy", "text": "Empowering mosques to stay open longer and serve better. We outfit masajid with heavy-duty solar panels, reliable battery storage, and premium sound systems. The result? Evening Quran classes thrive, the Adhan rings out clearly across valleys, and the mosque becomes a beacon of light in the neighborhood, immune to local power grid failures." },
+      { "icon": "flow", "name": "The Flow Initiative", "focus": "Water & Purity", "text": "Honoring the dignity of the worshipper. We upgrade and expand purification areas by drilling deep-water wells, installing commercial-grade water tanks, and building stunning, modern wudu stations with beautiful tiling and reliable plumbing. We ensure that preparing for prayer is a joyful, serene experience." },
+      { "icon": "expansion", "name": "The Expansion Initiative", "focus": "Space & Comfort", "text": "Making room for everyone. As communities grow, they need more space. We fund the expansion of prayer halls, pour solid foundations for new community wings, install climate-control solutions (fans/AC), and provide premium, thick carpeting so every worshipper feels comfortable, welcomed, and at home." },
+      { "icon": "iqra", "name": "The Iqra Initiative", "focus": "Knowledge & Education", "text": "Cultivating the minds of the next generation. We transform masajid into vibrant hubs of learning by building dedicated classrooms, supplying comfortable study desks, and stocking comprehensive libraries with Qurans and Islamic texts. We ensure that children have a beautiful environment to memorize scripture and the community has the resources to deepen their understanding of the Deen." },
+      { "icon": "imam", "name": "The Imam Initiative", "focus": "Imam Empowerment", "text": "Empowering the imams who lead, teach and care for every community in the network.", "draft": true }
+    ]
+  },
+  "tiers": {
+    "eyebrow": "Choose Your Legacy",
+    "h2": "Monthly giving",
+    "h2em": "tiers",
+    "lede": "Every tier pools directly into our global projects. Choose the level of impact you wish to sustain every single month, and watch the Ummah flourish.",
+    "perMonth": "/ month",
+    "perDay": "Just {d} a day",
+    "impact": "Your impact",
+    "button": "Give ${amount} a month",
+    "items": [
+      { "icon": "seed", "name": "The Seed", "arabicName": "Al-Badr", "arabic": "البدر", "amount": 10, "tagline": "Just 33 cents a day to spark continuous growth.", "text": "Your contribution pools into our enhancement fund. This tier directly supports the vital infrastructure of mosques—providing fresh, high-quality Qurans, maintaining solar panels, and ensuring the mosque is always pristine and welcoming.", "impact": "You become the quiet force sustaining the daily vibrancy of over 50+ mosques a year.", "link": "" },
+      { "icon": "spring", "name": "The Spring", "arabicName": "Al-Kawthar", "arabic": "الكوثر", "amount": 25, "tagline": "Flowing blessings for growing communities.", "text": "This tier is heavily dedicated to the Flow Initiative. You are actively funding the construction of beautiful wudu stations, clean water access, and plumbing upgrades that allow congregations to purify themselves with dignity and ease.", "impact": "You help fund the complete construction of modern wudu facilities for 2 vibrant communities annually.", "link": "" },
+      { "icon": "radiant", "name": "The Radiant", "arabicName": "An-Nur", "arabic": "النور", "amount": 50, "tagline": "One of Allah’s beautiful names, a pillar of light and infrastructure.", "text": "Your generous monthly gift empowers major upgrades. This tier focuses on solar power installations, expanding prayer halls, and upgrading sound systems. You are physically expanding the reach and capability of the mosque.", "impact": "You fund the total technological or structural upgrade of 1 growing community mosque every year.", "link": "" },
+      { "icon": "legacy", "name": "The Legacy", "arabicName": "Al-Firdaus", "arabic": "الفردوس", "amount": 100, "tagline": "The visionary builder tier.", "text": "For those who want to maximize their Sadaqah Jariyah. This tier accelerates our ability to partner with newly formed communities to break ground on entirely new masajid, providing them with a spiritual home from day one.", "impact": "You become a cornerstone funder, single-handedly sponsoring the core materials to establish a brand new, ground-up mosque annually, while uplifting the rest of the network.", "link": "" }
+    ],
+    "custom": {
+      "name": "Your own amount",
+      "text": "Prefer a different monthly amount? Every gift, of any size, pools into the same global fund.",
+      "label": "Monthly amount in US dollars",
+      "button": "Give monthly"
+    }
+  },
+  "promise": {
+    "eyebrow": "Our Promise",
+    "h2": "Witness the joy:",
+    "h2em": "radical transparency",
+    "lede": "When you invest in the houses of Allah, you deserve to witness the fruits of your partnership. We don't just ask for your trust; we prove it every single month.",
+    "items": [
+      { "icon": "dashboard", "title": "Your Personal Legacy Dashboard", "text": "Log in anytime to see exactly which mosques in which countries your specific monthly cohort empowered. Watch your global footprint grow on an interactive map." },
+      { "icon": "stories", "title": "Stories of Joy", "sub": "Quarterly Visual Reports", "text": "We provide high-definition before-and-after photos, but more importantly, we share the human stories. You’ll receive beautiful video updates featuring smiling children in new classrooms, interviews with joyful local Imams, and communities celebrating their expanded spaces." },
+      { "icon": "local", "title": "Vetted, Local Partnerships", "text": "We empower local economies. We bypass bureaucratic red tape by hiring local engineers, architects, and workers from within the community itself, ensuring that your funds provide jobs and stimulate the local economy while upgrading the mosque." }
+    ]
+  },
+  "impact": {
+    "eyebrow": "Proof from previous projects",
+    "h2": "See the",
+    "h2em": "joy",
+    "lede": "Real masajid. Real communities. Drag the slider to see a project before and after.",
+    "before": "Before",
+    "after": "After",
+    "slider": "Drag to compare before and after",
+    "more": "More completed projects"
+  },
+  "final": {
+    "eyebrow": "The Ummah is Thriving",
+    "h2": "Be part of",
+    "h2em": "the story.",
+    "p1": "A Masjid is the beating heart of our community. It is where our children learn their first Arabic letters, where our marriages are celebrated, where our hearts are mended, and where our connection with the Creator is perfected.",
+    "p2": "By joining MasjidHearts, you aren't just giving charity—you are empowering your brothers and sisters worldwide to build the most beautiful, welcoming, and radiant spiritual homes possible.",
+    "p3": "Do not let another day pass without securing your share of this immense, joyful reward. Join thousands of believers who have already turned their modest monthly giving into an unstoppable force for light and elevation.",
+    "cta": "Start your monthly giving"
+  },
+  "footer": {
+    "line": "One modest gift. Dozens of mosques. Endless sadaqah.",
+    "site": "Visit the Masjid Hearts website",
+    "email": "Email us"
+  },
+  "placeholder": "Placeholder"
+}

@@ -1,0 +1,102 @@
+{
+  "projects": [
+    {
+      "title": "Project title 1",
+      "masjid": "Masjid name",
+      "country": "Country",
+      "initiative": "Radiance",
+      "year": "Year",
+      "summary": "One or two sentences about what was built and what it changed for the community.",
+      "before": "",
+      "after": "",
+      "beforeAlt": "",
+      "afterAlt": "",
+      "featured": true,
+      "placeholder": true
+    },
+    {
+      "title": "Project title 2",
+      "masjid": "Masjid name",
+      "country": "Country",
+      "initiative": "Flow",
+      "year": "Year",
+      "summary": "One or two sentences about what was built and what it changed for the community.",
+      "before": "",
+      "after": "",
+      "beforeAlt": "",
+      "afterAlt": "",
+      "featured": false,
+      "placeholder": true
+    },
+    {
+      "title": "Project title 3",
+      "masjid": "Masjid name",
+      "country": "Country",
+      "initiative": "Expansion",
+      "year": "Year",
+      "summary": "One or two sentences about what was built and what it changed for the community.",
+      "before": "",
+      "after": "",
+      "beforeAlt": "",
+      "afterAlt": "",
+      "featured": false,
+      "placeholder": true
+    },
+    {
+      "title": "Project title 4",
+      "masjid": "Masjid name",
+      "country": "Country",
+      "initiative": "Iqra",
+      "year": "Year",
+      "summary": "One or two sentences about what was built and what it changed for the community.",
+      "before": "",
+      "after": "",
+      "beforeAlt": "",
+      "afterAlt": "",
+      "featured": false,
+      "placeholder": true
+    },
+    {
+      "title": "Project title 5",
+      "masjid": "Masjid name",
+      "country": "Country",
+      "initiative": "Flow",
+      "year": "Year",
+      "summary": "One or two sentences about what was built and what it changed for the community.",
+      "before": "",
+      "after": "",
+      "beforeAlt": "",
+      "afterAlt": "",
+      "featured": false,
+      "placeholder": true
+    },
+    {
+      "title": "Project title 6",
+      "masjid": "Masjid name",
+      "country": "Country",
+      "initiative": "Radiance",
+      "year": "Year",
+      "summary": "One or two sentences about what was built and what it changed for the community.",
+      "before": "",
+      "after": "",
+      "beforeAlt": "",
+      "afterAlt": "",
+      "featured": false,
+      "placeholder": true
+    },
+    {
+      "title": "Project title 7",
+      "masjid": "Masjid name",
+      "country": "Country",
+      "initiative": "Expansion",
+      "year": "Year",
+      "summary": "One or two sentences about what was built and what it changed for the community.",
+      "before": "",
+      "after": "",
+      "beforeAlt": "",
+      "afterAlt": "",
+      "featured": false,
+      "placeholder": true
+    }
+  ]
+}

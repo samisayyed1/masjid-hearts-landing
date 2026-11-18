@@ -1,0 +1,54 @@
+---
+// Drag (or use arrow keys) to compare a project before and after.
+import Media from './Media.astro';
+interface Props { before?: string; after?: string; beforeAlt?: string; afterAlt?: string; label: string; beforeText: string; afterText: string; slider: string }
+const { before, after, beforeAlt, afterAlt, label, beforeText, afterText, slider } = Astro.props;
+---
+<div class="ba" data-ba style="--pos:50%">
+  <div class="ba-layer"><Media src={before} alt={beforeAlt} label={`${beforeText}: ${label}`} tone="before" sizes="(max-width: 900px) 92vw, 760px" /></div>
+  <div class="ba-layer ba-after"><Media src={after} alt={afterAlt} label={`${afterText}: ${label}`} tone="after" sizes="(max-width: 900px) 92vw, 760px" /></div>
+  <span class="tag tag-b" aria-hidden="true">{beforeText}</span>
+  <span class="tag tag-a" aria-hidden="true">{afterText}</span>
+  <span class="handle" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6" /></svg></span></span>
+  <input type="range" min="0" max="100" value="50" step="1" aria-label={slider} data-range />
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-ba]').forEach((el) => {
+    const range = el.querySelector<HTMLInputElement>('[data-range]')!;
+    const set = () => el.style.setProperty('--pos', `${range.value}%`);
+    range.addEventListener('input', () => { el.classList.add('touched'); set(); });
+    // A gentle hint the first time it comes into view.
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((e) => {
+        if (!e[0].isIntersecting) return;
+        io.disconnect();
+        const t0 = performance.now();
+        const step = (t: number) => {
+          if (el.classList.contains('touched')) return;
+          const k = Math.min(1, (t - t0) / 1800);
+          range.value = String(Math.round(50 + Math.sin(k * Math.PI * 2) * 16 * (1 - k)));
+          set();
+          if (k < 1) requestAnimationFrame(step);
+        };
+        setTimeout(() => requestAnimationFrame(step), 500);
+      }, { threshold: 0.6 });
+      io.observe(el);
+    }
+  });
+</script>
+
+<style>
+  .ba { position: relative; aspect-ratio: 16 / 10; border-radius: var(--radius); overflow: hidden; isolation: isolate; background: var(--green-deep); box-shadow: 0 40px 80px -40px rgba(0, 35, 30, 0.6); touch-action: pan-y; }
+  .ba-layer { position: absolute; inset: 0; }
+  .ba-after { clip-path: inset(0 0 0 var(--pos)); }
+  .tag { position: absolute; top: 16px; padding: 6px 12px; border-radius: 999px; background: rgba(0, 0, 0, 0.45); backdrop-filter: blur(6px); color: var(--white); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; pointer-events: none; }
+  .tag-b { left: 16px; }
+  .tag-a { right: 16px; background: rgba(207, 176, 131, 0.9); color: var(--green-night); }
+  .handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; margin-left: -1px; background: var(--white); box-shadow: 0 0 18px rgba(0, 0, 0, 0.35); pointer-events: none; }
+  .handle span { position: absolute; top: 50%; left: 50%; width: 52px; height: 52px; margin: -26px 0 0 -26px; border-radius: 50%; background: var(--white); color: var(--green); display: grid; place-items: center; box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.45); transition: transform 0.25s var(--ease); }
+  .handle svg { width: 22px; height: 22px; }
+  .ba:hover .handle span { transform: scale(1.06); }
+  input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; -webkit-appearance: none; appearance: none; }
+  .ba:has(input:focus-visible) .handle span { outline: 3px solid var(--gold); outline-offset: 3px; }
+</style>

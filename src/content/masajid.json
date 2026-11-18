@@ -1,0 +1,114 @@
+{
+  "masajid": [
+    {
+      "name": "Masjid name 1",
+      "city": "City",
+      "country": "Country",
+      "lat": 14.7,
+      "lng": -17.4,
+      "initiative": "Radiance",
+      "image": "",
+      "imageAlt": "",
+      "placeholder": true
+    },
+    {
+      "name": "Masjid name 2",
+      "city": "City",
+      "country": "Country",
+      "lat": -6.2,
+      "lng": 106.8,
+      "initiative": "Flow",
+      "image": "",
+      "imageAlt": "",
+      "placeholder": true
+    },
+    {
+      "name": "Masjid name 3",
+      "city": "City",
+      "country": "Country",
+      "lat": -38.1,
+      "lng": 176.2,
+      "initiative": "Expansion",
+      "image": "",
+      "imageAlt": "",
+      "placeholder": true
+    },
+    {
+      "name": "Masjid name 4",
+      "city": "City",
+      "country": "Country",
+      "lat": 23.8,
+      "lng": 90.4,
+      "initiative": "Iqra",
+      "image": "",
+      "imageAlt": "",
+      "placeholder": true
+    },
+    {
+      "name": "Masjid name 5",
+      "city": "City",
+      "country": "Country",
+      "lat": 9.0,
+      "lng": 38.7,
+      "initiative": "Radiance",
+      "image": "",
+      "imageAlt": "",
+      "placeholder": true
+    },
+    {
+      "name": "Masjid name 6",
+      "city": "City",
+      "country": "Country",
+      "lat": 33.6,
+      "lng": 73.0,
+      "initiative": "Flow",
+      "image": "",
+      "imageAlt": "",
+      "placeholder": true
+    },
+    {
+      "name": "Masjid name 7",
+      "city": "City",
+      "country": "Country",
+      "lat": -1.3,
+      "lng": 36.8,
+      "initiative": "Expansion",
+      "image": "",
+      "imageAlt": "",
+      "placeholder": true
+    },
+    {
+      "name": "Masjid name 8",
+      "city": "City",
+      "country": "Country",
+      "lat": 4.9,
+      "lng": 114.9,
+      "initiative": "Iqra",
+      "image": "",
+      "imageAlt": "",
+      "placeholder": true
+    },
+    {
+      "name": "Masjid name 9",
+      "city": "City",
+      "country": "Country",
+      "lat": 12.6,
+      "lng": -8.0,
+      "initiative": "Flow",
+      "image": "",
+      "imageAlt": "",
+      "placeholder": true
+    },
+    {
+      "name": "Masjid name 10",
+      "city": "City",
+      "country": "Country",
+      "lat": 39.9,
+      "lng": 32.8,
+      "initiative": "Radiance",
+      "image": "",
+      "imageAlt": "",
+      "placeholder": true
+    }
+  ]
+}

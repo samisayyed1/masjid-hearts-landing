@@ -1,0 +1,31 @@
+---
+// A photo from src/assets/masajid or src/assets/projects, or a branded placeholder until the real photo arrives.
+import { Image } from 'astro:assets';
+import dome from '../data/dome.json';
+interface Props { src?: string; alt?: string; label: string; tone?: 'default' | 'before' | 'after'; sizes?: string; class?: string; eager?: boolean }
+const { src = '', alt = '', label, tone = 'default', sizes = '(max-width: 760px) 90vw, 400px', class: cls, eager = false } = Astro.props;
+const all = import.meta.glob<{ default: ImageMetadata }>('../assets/{masajid,projects,site}/*.{jpg,jpeg,png,webp,avif}', { eager: true });
+const name = src.split('/').pop();
+const found = name ? Object.entries(all).find(([p]) => p.endsWith('/' + name))?.[1].default : undefined;
+---
+{found ? (
+  <Image class:list={['media', cls]} src={found} alt={alt} widths={[480, 800, 1200, 1600]} sizes={sizes} loading={eager ? 'eager' : 'lazy'} />
+) : (
+  <div class:list={['media', 'ph', `ph-${tone}`, cls]} role="img" aria-label={`${label} (placeholder image)`}>
+    <svg class="ph-dome" viewBox="4400 4150 12200 12700" aria-hidden="true"><g fill="currentColor">{dome.hearts.map((d) => <path d={d} />)}<path d={dome.finial} /></g></svg>
+    <span class="ph-label"><span class="ph-chip">Placeholder</span>{label}</span>
+  </div>
+)}
+
+<style>
+  .media { width: 100%; height: 100%; object-fit: cover; }
+  .ph { position: relative; display: grid; place-items: center; overflow: hidden; color: var(--gold); background: radial-gradient(90% 80% at 50% 30%, #0b5d50, var(--green) 55%, var(--green-deep)); }
+  .ph::before { content: ''; position: absolute; inset: 0; opacity: 0.09; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23CFB083' stroke-width='1.2'%3E%3Crect x='21' y='21' width='58' height='58'/%3E%3Crect x='21' y='21' width='58' height='58' transform='rotate(45 50 50)'/%3E%3C/g%3E%3C/svg%3E"); }
+  .ph-before { color: #9fa79f; background: radial-gradient(90% 80% at 50% 30%, #5c625c, #3f4540 60%, #2c302d); }
+  .ph-before::before { filter: grayscale(1); opacity: 0.12; }
+  .ph-after { background: radial-gradient(90% 80% at 50% 25%, #1b7a68, var(--green) 55%, var(--green-deep)); }
+  .ph-dome { position: relative; width: 34%; max-width: 180px; opacity: 0.55; }
+  .ph-after .ph-dome { opacity: 0.9; filter: drop-shadow(0 0 24px rgba(207, 176, 131, 0.55)); }
+  .ph-label { position: absolute; left: 14px; right: 14px; bottom: 12px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 0.8rem; font-weight: 600; color: rgba(255, 255, 255, 0.85); }
+  .ph-label .ph-chip { color: var(--gold-soft); }
+</style>

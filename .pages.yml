@@ -1,0 +1,75 @@
+# Pages CMS (https://pagescms.org): a browser editor for this landing page.
+# Open https://app.pagescms.org, sign in with GitHub, pick this repository.
+# Saving commits to GitHub and the site rebuilds in about a minute.
+media:
+  - name: masajid
+    label: Masjid photos
+    input: src/assets/masajid
+    output: src/assets/masajid
+    extensions: [jpg, jpeg, png, webp, avif]
+    rename: safe
+  - name: projects
+    label: Project photos
+    input: src/assets/projects
+    output: src/assets/projects
+    extensions: [jpg, jpeg, png, webp, avif]
+    rename: safe
+
+content:
+  - name: masajid
+    label: Masajid in the network
+    type: file
+    path: src/content/masajid.json
+    format: json
+    fields:
+      - name: masajid
+        label: Masajid
+        type: object
+        list: true
+        description: Shown in the carousel and as pins on the live map. Delete the placeholder entries once real ones are added.
+        fields:
+          - { name: name, label: Masjid name, type: string, required: true }
+          - { name: city, label: Town or city, type: string }
+          - { name: country, label: Country, type: string, required: true }
+          - { name: lat, label: Latitude (for the map pin), type: number, description: "Right-click the masjid in Google Maps; the first number is latitude." }
+          - { name: lng, label: Longitude (for the map pin), type: number, description: The second number from Google Maps. }
+          - { name: initiative, label: Initiative, type: select, options: { values: [Radiance, Flow, Expansion, Iqra, Imam] } }
+          - { name: image, label: Photo, type: image, options: { media: masajid } }
+          - { name: imageAlt, label: Photo description (for blind visitors), type: string }
+          - { name: placeholder, label: This is a placeholder, type: boolean, description: Untick once the real name and photo are in. }
+
+  - name: projects
+    label: Completed projects (proof)
+    type: file
+    path: src/content/projects.json
+    format: json
+    fields:
+      - name: projects
+        label: Projects
+        type: object
+        list: true
+        description: The project marked "Featured" gets the before-and-after slider. The rest show as cards.
+        fields:
+          - { name: title, label: Project title, type: string, required: true }
+          - { name: masjid, label: Masjid, type: string }
+          - { name: country, label: Country, type: string }
+          - { name: initiative, label: Initiative, type: select, options: { values: [Radiance, Flow, Expansion, Iqra, Imam] } }
+          - { name: year, label: Year, type: string }
+          - { name: summary, label: Short summary, type: text }
+          - { name: before, label: Before photo, type: image, options: { media: projects } }
+          - { name: beforeAlt, label: Before photo description, type: string }
+          - { name: after, label: After photo, type: image, options: { media: projects } }
+          - { name: afterAlt, label: After photo description, type: string }
+          - { name: featured, label: Featured (before-and-after slider), type: boolean }
+          - { name: placeholder, label: This is a placeholder, type: boolean }
+
+  - name: settings
+    label: Settings and donation link
+    type: file
+    path: src/content/settings.json
+    format: json
+    fields:
+      - { name: masajidCount, label: Number of masajid in the network, type: number, required: true }
+      - { name: donateUrl, label: Monthly donation link, type: string, description: "Every donate button goes here. Until it is set, buttons open the contact form on the main Masjid Hearts website." }
+      - { name: mainSite, label: Main Masjid Hearts website, type: string }
+      - { name: email, label: Contact email, type: string }

@@ -1,0 +1,130 @@
+---
+import '../styles/global.css';
+import Logo from '../components/Logo.astro';
+import copy from '../content/landing.json';
+import { url, giveHref, settings } from '../lib/site';
+const n = copy.nav;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const og = new URL(url('/og.png'), Astro.site);
+const ld = { '@context': 'https://schema.org', '@type': 'NGO', name: 'Masjid Hearts', url: canonical.href, description: copy.meta.description };
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{copy.meta.title}</title>
+    <meta name="description" content={copy.meta.description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#00483D" />
+    <link rel="icon" href={url('/favicon.svg')} type="image/svg+xml" />
+    <link rel="apple-touch-icon" href={url('/apple-touch-icon.png')} />
+    <meta property="og:site_name" content="Masjid Hearts" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={copy.meta.title} />
+    <meta property="og:description" content={copy.meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={og} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+    <script is:inline>if ('IntersectionObserver' in window) document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header" data-header>
+      <div class="wrap bar">
+        <a class="brand" href="#top" aria-label="Masjid Hearts, back to top"><Logo title={false} /></a>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" data-menu><span></span><span class="sr">Menu</span></button>
+        <nav class="nav" id="site-nav" aria-label="Page sections">
+          <a href="#story">{n.story}</a>
+          <a href="#model">{n.model}</a>
+          <a href="#initiatives">{n.initiatives}</a>
+          <a href="#tiers">{n.tiers}</a>
+          <a href="#impact">{n.impact}</a>
+          <a class="btn btn-gold" href="#tiers">{n.give}</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main"><slot /></main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="foot">
+          <div>
+            <a class="brand" href="#top" aria-label="Masjid Hearts, back to top"><Logo title={false} /></a>
+            <p>{copy.footer.line}</p>
+          </div>
+          <ul role="list">
+            <li><a href={settings.mainSite}>{copy.footer.site}</a></li>
+            {settings.email && <li><a href={`mailto:${settings.email}`}>{copy.footer.email}</a></li>}
+            <li><a href={giveHref()}>{n.give}</a></li>
+          </ul>
+        </div>
+        <p class="foot-base">© {new Date().getFullYear()} Masjid Hearts</p>
+      </div>
+    </footer>
+
+    <div class="give-bar" data-givebar aria-hidden="true">
+      <p><strong>From $10 a month</strong>Sadaqah Jariyah for {settings.masajidCount}+ masajid</p>
+      <a class="btn btn-gold" href="#tiers" tabindex="-1">{n.give}</a>
+    </div>
+
+    <script>
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }),
+        { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
+      );
+      document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+
+      const header = document.querySelector<HTMLElement>('[data-header]')!;
+      const menu = document.querySelector<HTMLButtonElement>('[data-menu]')!;
+      const bar = document.querySelector<HTMLElement>('[data-givebar]')!;
+      const hero = document.querySelector<HTMLElement>('[data-hero]');
+      const quiet = [...document.querySelectorAll<HTMLElement>('[data-quiet]')];
+      const onScroll = () => {
+        header.classList.toggle('scrolled', window.scrollY > 24);
+        // The mobile give bar appears after the hero and steps aside where giving is already on screen.
+        const past = hero ? hero.getBoundingClientRect().bottom < 0 : window.scrollY > 600;
+        const overlap = quiet.some((q) => { const r = q.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; });
+        const show = past && !overlap;
+        bar.classList.toggle('show', show);
+        bar.setAttribute('aria-hidden', String(!show));
+        bar.querySelector('a')!.tabIndex = show ? 0 : -1;
+      };
+      onScroll();
+      addEventListener('scroll', onScroll, { passive: true });
+
+      const setOpen = (open: boolean) => {
+        header.classList.toggle('open', open);
+        menu.setAttribute('aria-expanded', String(open));
+        document.documentElement.style.overflow = open ? 'hidden' : '';
+      };
+      menu.addEventListener('click', () => setOpen(!header.classList.contains('open')));
+      header.querySelectorAll('.nav a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+      addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false));
+      matchMedia('(min-width: 961px)').addEventListener?.('change', () => setOpen(false));
+
+      // Underline the menu item for the section on screen.
+      const links = new Map([...header.querySelectorAll<HTMLAnchorElement>('.nav a:not(.btn)')].map((a) => [a.hash.slice(1), a]));
+      const spy = new IntersectionObserver((entries) => entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        links.forEach((a) => a.classList.remove('active'));
+        links.get(e.target.id)?.classList.add('active');
+      }), { rootMargin: '-45% 0px -50% 0px' });
+      links.forEach((_, id) => { const s = document.getElementById(id); if (s) spy.observe(s); });
+
+      // Count up numbers marked data-count when they come into view.
+      const counter = new IntersectionObserver((entries) => entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        counter.unobserve(e.target);
+        const el = e.target as HTMLElement, end = Number(el.dataset.count);
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches || !end) return;
+        const t0 = performance.now();
+        const step = (t: number) => { const k = Math.min(1, (t - t0) / 1600); el.textContent = String(Math.round(end * (1 - Math.pow(1 - k, 3)))); if (k < 1) requestAnimationFrame(step); };
+        requestAnimationFrame(step);
+      }), { threshold: 0.6 });
+      document.querySelectorAll('[data-count]').forEach((el) => counter.observe(el));
+    </script>
+  </body>
+</html>
