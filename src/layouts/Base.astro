@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import Logo from '../components/Logo.astro';
 import copy from '../content/landing.json';
-import { url, giveHref, settings } from '../lib/site';
+import { url, giveHref, settings, fill } from '../lib/site';
 const n = copy.nav;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const og = new URL(url('/og.png'), Astro.site);
@@ -66,7 +66,7 @@ const ld = { '@context': 'https://schema.org', '@type': 'NGO', name: 'Masjid Hea
     </footer>
 
     <div class="give-bar" data-givebar aria-hidden="true">
-      <p><strong>From $10 a month</strong>Sadaqah Jariyah for {settings.masajidCount}+ masajid</p>
+      <p><strong>{copy.giveBar.title.replace('{amount}', String(Math.min(...copy.tiers.items.map((t) => t.amount))))}</strong>{fill(copy.giveBar.text)}</p>
       <a class="btn btn-gold" href="#tiers" tabindex="-1">{n.give}</a>
     </div>
 
@@ -112,7 +112,7 @@ const ld = { '@context': 'https://schema.org', '@type': 'NGO', name: 'Masjid Hea
         links.forEach((a) => a.classList.remove('active'));
         links.get(e.target.id)?.classList.add('active');
       }), { rootMargin: '-45% 0px -50% 0px' });
-      links.forEach((_, id) => { const s = document.getElementById(id); if (s) spy.observe(s); });
+      document.querySelectorAll('main > section[id]').forEach((s) => spy.observe(s));
 
       // Count up numbers marked data-count when they come into view.
       const counter = new IntersectionObserver((entries) => entries.forEach((e) => {

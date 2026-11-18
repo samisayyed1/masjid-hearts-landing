@@ -16,7 +16,7 @@ const y = (lat: number) => ((land.latMax + land.step / 2 - lat) / (rows * land.s
     <canvas data-canvas></canvas>
     <span class="sun" data-sun aria-hidden="true"></span>
     {pins.map((m, i) => (
-      <span class="pin" style={`left:${x(m.lng)}%;top:${y(m.lat)}%;--i:${i}`} tabindex="0" aria-label={`${m.name}, ${m.country}`}>
+      <span class="pin" style={`left:${x(m.lng)}%;top:${y(m.lat)}%;--i:${i}`} aria-hidden="true">
         <span class="tip">{m.name}<small>{m.city}, {m.country}{m.placeholder && ' · placeholder'}</small></span>
       </span>
     ))}
@@ -126,14 +126,14 @@ const y = (lat: number) => ((land.latMax + land.step / 2 - lat) / (rows * land.s
   .map { position: relative; aspect-ratio: var(--ratio); width: 100%; }
   .map canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
   .sun { position: absolute; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%; background: radial-gradient(circle, #fff7e6 0 35%, var(--gold) 60%, transparent 72%); box-shadow: 0 0 22px 8px rgba(231, 214, 184, 0.5); pointer-events: none; }
-  .pin { position: absolute; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; cursor: default; outline-offset: 0; }
+  .pin { position: absolute; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; cursor: default; }
   .pin::before { content: ''; position: absolute; inset: 7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 2px var(--green-night), 0 0 14px rgba(207, 176, 131, 0.9); }
   .pin::after { content: ''; position: absolute; inset: 3px; border-radius: 50%; border: 1.5px solid var(--gold); opacity: 0; }
   @media (prefers-reduced-motion: no-preference) { .pin::after { animation: ping 3.2s cubic-bezier(0.2, 0.6, 0.3, 1) infinite; animation-delay: calc(var(--i) * 0.37s); } }
   @keyframes ping { 0% { transform: scale(0.6); opacity: 0.95; } 80%, 100% { transform: scale(2.6); opacity: 0; } }
   .tip { position: absolute; left: 50%; bottom: calc(100% + 8px); transform: translate(-50%, 4px); min-width: max-content; padding: 8px 12px; border-radius: 10px; background: var(--white); color: var(--green); font-weight: 700; font-size: 0.85rem; line-height: 1.3; box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.5); opacity: 0; visibility: hidden; transition: opacity 0.2s, transform 0.2s var(--ease), visibility 0.2s; z-index: 2; }
   .tip small { display: block; font-weight: 500; color: var(--ink-soft); font-size: 0.78rem; }
-  .pin:hover .tip, .pin:focus-visible .tip { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+  .pin:hover .tip { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
 
   .legend { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 18px; font-size: 0.84rem; color: rgba(255, 255, 255, 0.7); }
   .legend li { display: inline-flex; align-items: center; gap: 8px; }

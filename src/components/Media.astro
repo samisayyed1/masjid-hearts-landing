@@ -2,11 +2,11 @@
 // A photo from src/assets/masajid or src/assets/projects, or a branded placeholder until the real photo arrives.
 import { Image } from 'astro:assets';
 import dome from '../data/dome.json';
-interface Props { src?: string; alt?: string; label: string; tone?: 'default' | 'before' | 'after'; sizes?: string; class?: string; eager?: boolean }
-const { src = '', alt = '', label, tone = 'default', sizes = '(max-width: 760px) 90vw, 400px', class: cls, eager = false } = Astro.props;
+interface Props { folder?: 'masajid' | 'projects' | 'site'; src?: string; alt?: string; label: string; tone?: 'default' | 'before' | 'after'; sizes?: string; class?: string; eager?: boolean }
+const { folder, src = '', alt = '', label, tone = 'default', sizes = '(max-width: 760px) 90vw, 400px', class: cls, eager = false } = Astro.props;
 const all = import.meta.glob<{ default: ImageMetadata }>('../assets/{masajid,projects,site}/*.{jpg,jpeg,png,webp,avif}', { eager: true });
 const name = src.split('/').pop();
-const found = name ? Object.entries(all).find(([p]) => p.endsWith('/' + name))?.[1].default : undefined;
+const found = name ? Object.entries(all).find(([p]) => p.endsWith(`/${folder ? folder + '/' : ''}${name}`))?.[1].default : undefined;
 ---
 {found ? (
   <Image class:list={['media', cls]} src={found} alt={alt} widths={[480, 800, 1200, 1600]} sizes={sizes} loading={eager ? 'eager' : 'lazy'} />

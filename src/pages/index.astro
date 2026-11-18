@@ -21,7 +21,7 @@ const perDay = (amount: number) => {
   const d = (amount * 12) / 365;
   return d < 1 ? `${Math.round(d * 100)} cents` : `$${d.toFixed(2)}`;
 };
-const featured = projects.find((p) => p.featured) ?? projects[0];
+const featured = projects.find((p) => p.featured) ?? projects[0]; // may be undefined if the list is empty
 const others = projects.filter((p) => p !== featured);
 const tiers = c.tiers.items;
 ---
@@ -162,7 +162,7 @@ const tiers = c.tiers.items;
     <ul class="network" role="list" data-track tabindex="0" aria-label={c.light.networkH3}>
       {masajid.map((m) => (
         <li class="masjid">
-          <div class="frame"><Media src={m.image} alt={m.imageAlt} label={m.name} sizes="(max-width: 760px) 78vw, 340px" /></div>
+          <div class="frame"><Media folder="masajid" src={m.image} alt={m.imageAlt} label={m.name} sizes="(max-width: 760px) 78vw, 340px" /></div>
           <p class="m-tag">{m.initiative}</p>
           <h4>{m.name}</h4>
           <p class="m-place">{m.city}, {m.country}</p>
@@ -335,7 +335,7 @@ const tiers = c.tiers.items;
         <h2 class="display h2">{c.impact.h2} <em>{c.impact.h2em}</em></h2>
         <p class="lede">{c.impact.lede}</p>
       </div>
-      <div class="feature" data-reveal>
+      {featured && <div class="feature" data-reveal>
         <BeforeAfter before={featured.before} after={featured.after} beforeAlt={featured.beforeAlt} afterAlt={featured.afterAlt} label={featured.title} beforeText={c.impact.before} afterText={c.impact.after} slider={c.impact.slider} />
         <div class="feature-body">
           {featured.placeholder && <span class="ph-chip">{c.placeholder}</span>}
@@ -344,12 +344,12 @@ const tiers = c.tiers.items;
           <p class="p-where">{featured.masjid}, {featured.country}</p>
           <p class="p-sum">{featured.summary}</p>
         </div>
-      </div>
-      <h3 class="more" data-reveal>{c.impact.more}</h3>
+      </div>}
+      {others.length > 0 && <h3 class="more" data-reveal>{c.impact.more}</h3>}
       <ul class="projects" role="list">
         {others.map((p, i) => (
           <li data-reveal style={`--d:${i % 3}`}>
-            <div class="frame"><Media src={p.after || p.before} alt={p.afterAlt || p.beforeAlt} label={p.title} tone="after" sizes="(max-width: 760px) 90vw, 380px" /></div>
+            <div class="frame"><Media folder="projects" src={p.after || p.before} alt={p.afterAlt || p.beforeAlt} label={p.title} tone="after" sizes="(max-width: 760px) 90vw, 380px" /></div>
             <p class="p-tag">{p.initiative} · {p.year}</p>
             <h4 class="display">{p.title}</h4>
             <p class="p-where">{p.masjid}, {p.country}</p>
